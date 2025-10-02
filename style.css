@@ -1,0 +1,370 @@
+:root {
+  --primary-color: #ff5733; /* Cam/Đỏ sáng cho nút Mua ngay */
+  --secondary-color: #333;
+  --background-color: #f8f8f8;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+}
+
+/* --- 1. Thanh Menu và Giỏ hàng Icon --- */
+header {
+  background-color: rgb(39, 152, 177);
+  box-shadow: var(--card-shadow);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.menu a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: var(--primary-color);
+}
+
+/* Giỏ hàng Icon (Gợi ý sinh động) */
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s;
+}
+
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.cart-icon.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* --- 2. Banner và Slogan --- */
+.banner {
+  background-image: url("placeholder-banner.jpg"); /* Thay bằng ảnh thật */
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.banner h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  /* Hiệu ứng chữ chạy nhẹ */
+  animation: fadeInDown 1s;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: rgb(253, 253, 250);
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #e64a19;
+  transform: scale(1.05);
+}
+
+/* --- 3. Sản phẩm theo Lưới (Grid) --- */
+.content {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+  border-bottom: 3px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background-color: rgb(246, 246, 246);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+/* Gợi ý sinh động: Phóng to nhẹ khi rê chuột */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-actual {
+  width: 100%;
+  height: 350px;
+  object-fit: cover; /* Quan trọng: Đảm bảo ảnh không bị méo và lấp đầy khung */
+  display: block; /* Thêm display block để loại bỏ khoảng trắng dưới ảnh */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.price-group {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.old-price {
+  color: #999;
+  text-decoration: line-through; /* Gợi ý sinh động: Gạch ngang giá cũ */
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.new-price {
+  color: red; /* Gợi ý sinh động: Giá mới màu đỏ */
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.btn-add-to-cart {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #1e7e34;
+}
+
+/* --- 4. Modal Chung --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* Đặt lại margin cho cả 2 modal */
+  padding: 20px 40px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 650px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Giỏ hàng */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.cart-controls button {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cart-controls span {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.cart-summary {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* --- 5. Checkout Form (Thanh toán) --- */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Quan trọng để padding không làm tăng chiều rộng */
+}
+
+/* Gợi ý sinh động: Progress Bar */
+.progress-bar {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #999;
+}
+
+.progress-bar span {
+  margin: 0 10px;
+}
+
+.progress-bar .active {
+  color: var(--primary-color);
+}
+
+/* --- 6. Footer (Liên hệ) --- */
+footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 40px 0;
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.footer-section {
+  width: 30%;
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.footer-section h4 {
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.footer-section p,
+.footer-section a {
+  color: #2d6e77;
+  text-decoration: none;
+  line-height: 1.6;
+  display: block;
+}
+
+.footer-section a:hover {
+  color: var(--primary-color);
+}
+
+.contact-info i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
